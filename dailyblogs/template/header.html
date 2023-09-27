@@ -1,0 +1,137 @@
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    {% for cat in cats%}
+    <li><a href="/category/{{cat.url}}">{{cat.title}}</a></li>
+    {%endfor%}
+</ul>
+<ul id="dropdown2" class="dropdown-content">
+    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+</ul>
+<nav id="navbar" class="bg-primary">
+    <div class="">
+        <div class="nav-wrapper">
+            <a href="/home" class="brand-logo">DailyBlogs</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/about">About</a></li>
+                <li><a href="/admin">Admin</a></li>
+                <!-- Dropdown Trigger -->
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Categories
+                    <i class="material-icons right">arrow_drop_down</i></a>
+                </li>
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="dropdown-trigger" href="#!" data-target="dropdown2">Welcome {{request.user}}
+                        <i class="material-icons right">arrow_drop_down</i>
+                    </a>
+                </li>
+                {% else %}
+                <li class="ubtn">
+                    <a class="waves-effect waves-light btn modal-trigger" href="#signupmodal">Signup</a>
+                    <a class="waves-effect waves-light btn modal-trigger" href="#loginmodal">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% for message in messages  %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    <strong>Message : </strong> {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+<!-- Modal Trigger -->
+
+
+<!-- Signup Modal -->
+<div id="signupmodal" class="modal">
+    <div class="modal-content row">
+        <h4>Signup Here</h4>
+        <p>Fill the details Carefully</p>
+        <form action="/signup" method='post' class="col s12">
+            <div class="mb-3">
+                <label for="username" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="mb-3">
+                <label for="fname" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required>
+            </div>
+            <div class="mb-3">
+                <label for="lname" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="example@gmail.com"
+                       required>
+            </div>
+            <div class="mb-3">
+                <label for="pass1" class="form-label">Password</label>
+                <input type="text" class="form-control" id="pass1" name="pass1" placeholder="Password" required>
+            </div>
+            <div class="mb-3">
+                <label for="pass2" class="form-label">Confirm Password</label>
+                <input type="text" class="form-control" id="pass2" name="pass2"
+                       placeholder="Confirm Password" required>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Save changes</button>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
+
+<!-- Login Modal -->
+<div id="loginmodal" class="modal">
+    <div class="modal-content row">
+        <h4>Login Here</h4>
+        <form action="/login" method='post' class="col s12">
+            <div class="mb-3">
+                <label for="username" class="form-label">User Name</label>
+                <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username"
+                       required>
+            </div>
+            <div class="mb-3">
+                <label for="pass" class="form-label">Password</label>
+                <input type="password" class="form-control" id="loginpassword" name="loginpassword"
+                       placeholder="Enter the Password" required>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
+
+
+
+<!--{% if user.is_authenticated %}-->
+<!--<ul class="navbar-nav mr-2">-->
+<!--<li class="nav-item dropdown">-->
+<!--<a class="nav-link dropdown-toggle" href='#' id="navbarDropdown" role="button" data-toggle="dropdown"> Welcome {{request.user}}</a>-->
+<!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--          <a class="dropdown-item" href="/logout">Logout</a>-->
+
+<!--        </div>-->
+<!--      </li>-->
+<!--      </ul>-->
+<!--      </div>-->
+<!--{% else %}-->
+<!--  &lt;!&ndash; Button to  trigger Login modal &ndash;&gt;-->
+<!--<button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#loginModal">-->
+<!--Login-->
+<!--</button>-->
+
+<!--<button type="button" class="btn btn-success mr-2" data-toggle="modal" data-target="#signupModal">-->
+<!--SignUp-->
+<!--</button>-->
+<!--{% endif %}-->

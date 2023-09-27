@@ -1,0 +1,26 @@
+{%extends 'base.html' %}
+
+{%block title%} Welcome to DailyBlogs {%endblock%}
+
+{%block content%}
+<div class="container-custom">
+    <h3>{{cat.title}}</h3>
+    <div class="img-container">
+        <img src="/media/{{cat.image}}" class="responsive-img" style="max-height:450px;width:100%;object-fit:cover;"
+             alt="">
+    </div>
+    <div class="collection">
+        {% for p in post %}
+
+        <a href="/blog/{{p.url}}" class="collection-item">{{p.title}}</a>
+
+        {% empty %}
+        <h3>No Post in This categories</h3>
+
+        {%endfor%}
+    </div>
+
+</div>
+
+
+{%endblock%}

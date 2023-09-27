@@ -1,0 +1,25 @@
+.bg-primary{
+    background-color: #417690!important;
+}
+.mt20{
+    margin-top:20px;
+}
+.container-custom{
+    width:95%!important;
+    margin:auto;
+}
+#carousel{
+    height:180px;
+}
+#navbar{
+    padding-left:4rem !important;
+    padding-right:3rem !important;
+}
+.ubtn a{
+    background-color: #79aec8 !important;
+    color: black;
+    border-radius:5px;
+}
+#cmnt{
+    display: flex;
+}
